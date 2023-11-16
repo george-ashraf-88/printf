@@ -8,7 +8,7 @@
 int _printf(const char *format, ...)
 {
 	match a[] = {
-		{"%s", int print_s}, {"%c", print_char},
+		{"%s", print_s}, {"%c", print_char},
 		{"%%", print_37},
 		{"%i", print_i}, {"%d", print_d}, {"%r", print_revs},
 		{"%R", print_rot13}, {"%b", print_bin},
