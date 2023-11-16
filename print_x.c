@@ -1,48 +1,37 @@
 #include "main.h"
+
 /**
- * print_hex - prints a hexadecimal number.
+ * print_hex - prints an hexgecimal number.
  * @val: arguments.
  * Return: counter.
  */
 int print_hex(va_list val)
 {
 	int i;
-	int *hex_array;
-	int digit_count = 0;
+	int *array;
+	int counter = 0;
 	unsigned int num = va_arg(val, unsigned int);
-	unsigned int temp_num = num;
+	unsigned int tem = num;
 
-	while (temp_num != 0)
+	while (num / 16 != 0)
 	{
-		temp_num /= 16;
-		digit_count++;
+		num /= 16;
+		counter++;
 	}
-	if (digit_count == 0)
-	{
-		digit_count = 1;
-	}
+	counter++;
+	array = malloc(counter * sizeof(int));
 
-	hex_array = (int *)malloc(digit_count * sizeof(int));
-	if (hex_array)
+	for (i = 0; i < counter; i++)
 	{
-		for (i = 0; i < digit_count; i++)
-		{
-			hex_array[i] = num % 16;
-			num /= 16;
-		}
-		for (i = digit_count - 1; i >= 0; i--)
-		{
-			if (hex_array[i] > 9)
-			{
-				_putchar(hex_array[i] - 10 + 'A');
-			}
-			else
-			{
-				_putchar(hex_array[i] + '0');
-			}
-		}
-		free(hex_array);
-		return (digit_count);
+		array[i] = tem % 16;
+		tem /= 16;
 	}
-	return (-1);
+	for (i = counter - 1; i >= 0; i--)
+	{
+		if (array[i] > 9)
+			array[i] = array[i] + 39;
+		_putchar(array[i] + '0');
+	}
+	free(array);
+	return (counter);
 }
