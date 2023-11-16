@@ -3,6 +3,13 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
+#include <limits.h>
+#include <unistd.h>
+typedef struct format
+{
+	char *ID;
+	int (*f)();
+} match;
 
 
 int _putchar(char c);
@@ -19,6 +26,9 @@ int print_hex(va_list val);
 int print_HEX(unsigned int num);
 int print_exc_string(va_list val);
 int print_HEX_extra(unsigned int num);
-
+int print_pointer(va_list val);
+int print_hex_extra(unsigned long int num);
+int print_revs(va_list args);
+int print_rot13(va_list args);
 
 #endif
